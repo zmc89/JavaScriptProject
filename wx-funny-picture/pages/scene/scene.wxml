@@ -1,0 +1,27 @@
+<!--pages/scene/scene.wxml-->
+<view class="scene">
+  <view class="scene-editor" id="scene-editor">
+    <canvas
+      style="width: {{canvasWidth}}px; height: {{canvasHeight}}px;"
+      class="scene-editor-main"  
+      canvas-id="scene"
+      catchtouchstart="onTouchStart"
+      catchtouchmove="onTouchMove"
+      catchtouchend="onTouchEnd"
+    />
+  </view>
+  <swiper
+    circular="{{true}}"
+    display-multiple-items="{{5}}"
+    class="scene-template"
+    previous-margin="10rpx"
+    next-margin="10rpx"
+  >
+    <swiper-item wx:key="cover" wx:for="{{templates}}">
+      <view class="scene-item {{currentNewScene === index ? 'scene-item--active' : ''}}" bindtap="onTapScene" data-index="{{index}}">
+        <image class="scene-item-cover" mode="aspectFit" src="{{item.cover}}" />
+      </view>
+    </swiper-item>
+  </swiper>
+  <button class="scene-download" type="primary" bindtap="downloadPic">保存照片</button>
+</view>
